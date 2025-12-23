@@ -1,0 +1,547 @@
+/*estilo panel de admin*/
+/* ==== GENERAL ==== */
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+  color: #1f2937;
+}
+
+h1, h2, h3 {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* ==== CONTENEDOR ==== */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* ==== TABLAS ==== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th {
+  text-align: left;
+  background: #f3f4f6;
+  padding: 10px;
+  color: #374151;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table tr:hover {
+  background: #f9fafb;
+}
+
+/* ==== ESTADOS ==== */
+.estado {
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-align: center;
+  width: 100px;
+  display: inline-block;
+}
+
+.estado.activo {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.estado.inactivo {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.estado.graduado {
+  background-color: #e0f2fe;
+  color: #1e3a8a;
+}
+
+/* ==== BOTONES ==== */
+button {
+  background-color: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #15803d;
+  transform: scale(1.03);
+}
+
+button.danger {
+  background-color: #ef4444;
+}
+
+button.danger:hover {
+  background-color: #dc2626;
+}
+
+/* ==== INPUTS ==== */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f9fafb;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #16a34a;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.3);
+}
+
+/* ==== TOASTS ==== */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.toast.success {
+  background-color: #16a34a;
+}
+
+.toast.error {
+  background-color: #dc2626;
+}
+
+.toast.info {
+  background-color: #2563eb;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+/*codigo anterior */
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2; /* Fondo general gris claro */
+  color: #111;
+  flex: 1; /* empuja el footer hacia abajo */
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Contenido principal ===== */
+main {
+  display: block;
+}
+
+/* ===== Grid de tarjetas ===== */
+.grid-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,.25);
+  text-align: center;
+  width: 200px;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* ===== Bloques con imagen de fondo ===== */
+.section-fondo,
+#login-section,
+#admin-panel {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.section-fondo::after,
+#login-section::after,
+#admin-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/uploads/imagen0.jpg") no-repeat center center;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.section-fondo > *,
+#login-section > *,
+#admin-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Formularios ===== */
+input, button {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* ===== Tabla general ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ===== Botones específicos del panel admin ===== */
+.btn-activar {
+  background-color: #28a745; /* verde */
+}
+.btn-activar:hover {
+  background-color: #218838;
+}
+
+.btn-desactivar {
+  background-color: #ffc107; /* amarillo */
+  color: #111;
+}
+.btn-desactivar:hover {
+  background-color: #e0a800;
+}
+
+.btn-eliminar {
+  background-color: #dc3545; /* rojo */
+}
+.btn-eliminar:hover {
+  background-color: #c82333;
+}
+
+/* ===== Estilo para el panel de administración ===== */
+#admin-panel h2 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+#admin-panel table {
+  margin-top: 15px;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  margin-top: auto;
+}
+
+/* ===== Sección de bienvenida con marca de agua ===== */
+.seccion-bienvenida {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.seccion-bienvenida::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/uploads/imagen0.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+
+.contenido-bienvenida {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+}
+
+.contenido-bienvenida h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contenido-bienvenida p {
+  color: #222;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .section-fondo,
+  #login-section,
+  #admin-panel {
+    margin: 20px auto;
+    padding: 16px;
+  }
+  .card { width: 45%; }
+  .section-fondo::after,
+  #login-section::after,
+  #admin-panel::after {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  .card { width: 100%; }
+}
+/* Item de categoría elegante */
+#listaCategorias {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  display: grid;
+  gap: 10px;
+}
+#listaCategorias li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  background: #ffffffcc;
+  backdrop-filter: blur(2px);
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+#listaCategorias li > span {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Grupo de acciones compacto */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botón base */
+.btn {
+  appearance: none;
+  border: 0;
+  border-radius: 9999px;
+  padding: 8px 14px;
+  font-size: .95rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.15); }
+.btn:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(0,0,0,.12); }
+
+/* Variantes */
+.btn-edit { background: #0ea5e9; }
+.btn-edit:hover { background: #0284c7; }
+
+.btn-danger { background: #ef4444; }
+.btn-danger:hover { background: #dc2626; }
+
+.btn-success { background: #22c55e; }
+.btn-success:hover { background: #16a34a; }
+
+/* Enfoque accesible */
+.btn:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+} /* [web:254][web:269] */
+
+/* Ajuste responsive */
+@media (max-width: 520px) {
+  #listaCategorias li { grid-template-columns: 1fr; }
+  .table-actions { justify-content: flex-start; flex-wrap: wrap; }
+  .btn { padding: 10px 14px; }
+}
+
+/* Tarjetas genéricas */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.card-item {
+  background: #ffffffcc;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+
+/* Badges de estado (píldora) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: .82rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+.badge-green { color: #065f46; background: #d1fae5; border-color: #a7f3d0; }   /* Activo */
+.badge-red   { color: #7f1d1d; background: #fee2e2; border-color: #fecaca; }   /* Inactivo */
+.badge-blue  { color: #1e3a8a; background: #dbeafe; border-color: #bfdbfe; }   /* Graduado */
+.badge-gray  { color: #374151; background: #f3f4f6; border-color: #e5e7eb; }   /* Total */
+
+/* Encabezado con contadores */
+.kpi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 14px;
+}
+.kpi .badge { font-size: .9rem; padding: 6px 12px; }
+
+/* Tabla de productos mejorada */
+#tablaProductos {
+  border-radius: 12px;
+  overflow: hidden;
+}
+#tablaProductos thead th {
+  background: #0ea5e9;
+}
+#tablaProductos tbody tr:hover {
+  background: #f9fafb;
+}
+#tablaProductos td, #tablaProductos th {
+  vertical-align: middle;
+}
+#tablaProductos td .btn-editar { background: #0ea5e9; }
+#tablaProductos td .btn-editar:hover { background: #0284c7; }
+#tablaProductos td .btn-eliminar { background: #ef4444; }
+#tablaProductos td .btn-eliminar:hover { background: #dc2626; }
+
+/* Botones reutilizando estilos previos */
+.btn { border-radius: 9999px; }
+/* Botones tipo switch bonitos */
+button[role="switch"].btn {
+  background: #cbd5e1;
+  color: #0f172a;
+  border-radius: 9999px;
+  padding: 8px 16px;
+}
+button[role="switch"].btn[aria-checked="true"] { background: #22c55e; color: #fff; }  /* on */ /* [web:321][web:323] */
+button[role="switch"].btn[aria-checked="false"] { background: #ef4444; color: #fff; } /* off */
+button[role="switch"].btn:focus-visible { outline: 3px solid #60a5fa; outline-offset: 2px; } /* [web:269] */
+
+/* Input date compacto */
+#fechaGraduacion {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 10px;
+}

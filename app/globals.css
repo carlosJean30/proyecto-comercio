@@ -1,26 +1,773 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== RESET GLOBAL SUAVE (NO ROMPE OTRAS PÁGINAS) ===== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif; 
+  background: #ffffff; /* fondo neutro */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+/* =========================================================
+   ESTILOS EXCLUSIVOS PARA LA PÁGINA DE INICIO (Home)
+   Se activan SOLO si el componente usa .home-container
+   ========================================================= */
+
+/* CONTENEDOR */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  /* Fondo exclusivo del Home */
+  background: url("/uploads/imagen0.jpeg") no-repeat center center;
+  background-size: cover;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Capa blanca translúcida */
+.home-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+/* Todo dentro del home va encima del fondo */
+.home-container * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ENCABEZADO */
+.home-container .header {
+  background: #006adb;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.home-container .title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* NAV */
+.home-container .nav {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.home-container .btn-nav {
+  background: white;
+  color: #002b5b;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.home-container .btn-nav:hover {
+  border-color: white;
+  background: #0857b3;
+  color: white;
+}
+
+/* CONTENIDO PRINCIPAL */
+.home-container .main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.home-container .intro-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #002b5b;
+}
+
+.home-container .intro-text {
+  font-size: 18px;
+  max-width: 600px;
+  color: #444;
+  margin: 15px auto;
+}
+
+/* Botón principal */
+.home-container .btn-primary {
+  background: #002b5b;
+  padding: 12px 25px;
+  color: white;
+  font-weight: 600;
+  margin-top: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.home-container .btn-primary:hover {
+  background: #084b97;
+}
+
+/* Imagen principal */
+.home-container .home-image {
+  margin-top: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* FOOTER */
+.home-container .footer {
+  margin-top: auto;
+  background: #006adb;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .home-container .intro-title {
+    font-size: 26px;
+  }
+
+  .home-container .title {
+    font-size: 22px;
+  }
+
+  .home-container .btn-nav {
+    padding: 8px 15px;
+    font-size: 14px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================================
+   EVITAR QUE LOGIN Y ADMIN HAGAN HERENCIA
+   ========================================================= */
+
+.login-page {
+  background: #f4f4f4 !important;
+  background-image: none !important;
+}
+
+/* =======================================================
+   ESTILOS EXCLUSIVOS PARA EL LOGIN
+   ======================================================= */
+
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #002b5b;
+}
+
+.login-container label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: 0.2s;
+}
+
+.login-container input:focus {
+  border-color: #006adb;
+  box-shadow: 0 0 4px rgba(0, 106, 219, 0.4);
+}
+
+/* Botones */
+.login-container button,
+.login-container a.btn-login-back {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  transition: 0.3s;
+}
+
+/* Botón principal */
+.login-container button {
+  background: #006adb;
+  color: white;
+}
+
+.login-container button:hover {
+  background: #004da3;
+}
+
+/* Botón secundario (volver) */
+.login-container a.btn-login-back {
+  margin-top: 10px;
+  display: inline-block;
+  background: #e5e5e5;
+  color: #333;
+  text-decoration: none;
+}
+
+.login-container a.btn-login-back:hover {
+  background: #cfcfcf;
+}
+
+/* Ajustes responsive */
+@media (max-width: 480px) {
+  .login-container {
+    margin: 40px auto;
+    padding: 20px;
+  }
+}
+
+/* Contenedor general del panel */
+.admin-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título principal */
+.admin-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Tarjetas (categorías, estudiantes, etc.) */
+.card-box {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+/* Botones pequeños */
+.btn-small {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Botón principal azul */
+.btn-blue {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-blue:hover {
+  background: #0d47a1;
+}
+
+/* Botón eliminar */
+.btn-red {
+  background: #e53935;
+  color: white;
+}
+
+.btn-red:hover {
+  background: #b71c1c;
+}
+
+/* Línea de categoría */
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.category-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+/* ================================
+   ENCABEZADO DE LA PAGINA PRINCIPAL
+   ================================= */
+
+.home-header {
+  width: 100%;
+  background: #006adb;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Logo redondo */
+.logo-round {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.header-left {
+  position: absolute;
+  left: 20px;
+}
+
+.header-right {
+  position: absolute;
+  right: 20px;
+}
+
+/* Título centrado */
+.header-title {
+  color: rgb(12, 12, 12);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Botón cerrar sesión */
+.logout-btn {
+  background: #ff3333;
+  color: rgb(3, 3, 3);
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #cc0000;
+}
+
+/* =====================================================
+   ESTILOS EXCLUSIVOS PARA PRODUCTO (NO AFECTA A NADA)
+   ===================================================== */
+
+.producto-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Encabezado */
+.producto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.producto-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #002b5b;
+}
+
+.producto-back {
+  background: #006adb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.producto-back:hover {
+  background: #004da3;
+}
+
+/* Contenido */
+.producto-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tarjeta */
+.producto-card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.producto-card h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #002b5b;
+}
+
+.producto-card p {
+  color: #555;
+  margin: 15px 0;
+}
+
+/* Botón */
+.producto-btn {
+  background: #002b5b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.producto-btn:hover {
+  background: #084b97;
+}
+
+/* =====================================================
+   ESTILOS MEJORADOS EXCLUSIVOS PARA ADMIN
+   (NO AFECTA OTRAS PÁGINAS)
+   ===================================================== */
+
+/*aqui falta*/
+/* =====================================================
+   PRODUCTO RESPONSIVE
+   SOLO AFECTA .producto-page
+   ===================================================== */
+
+
+
+/* =======================
+   RESPONSIVE MOBILE
+   ======================= */
+@media (max-width: 768px) {
+
+  .producto-page {
+    padding: 15px;
+  }
+
+  .producto-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .producto-header h1 {
+    font-size: 22px;
+  }
+
+  .producto-card {
+    padding: 20px;
+  }
+
+  .producto-btn {
+    font-size: 16px;
+    padding: 14px;
+  }
+}
+
+/* =======================
+   RESPONSIVE EXTRA SMALL
+   ======================= */
+@media (max-width: 480px) {
+
+  .producto-header h1 {
+    font-size: 20px;
+  }
+
+  .producto-card {
+    padding: 15px;
+  }
+}
+/* ============================
+   HOME MODERNO (OPCIÓN B)
+   ============================ */
+
+.home-header {
+  background: linear-gradient(135deg, #0F4C8A, #1E5AA8);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.header-left,
+.header-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header-left {
+  left: 20px;
+}
+
+.header-right {
+  right: 20px;
+}
+
+.header-title {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.logo-round {
+  background: white;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.admin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 2px solid white;
+  color: white;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.admin-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* HERO */
+.home-hero {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  max-width: 520px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  animation: fadeUp 0.6s ease;
+}
+
+.hero-card h2 {
+  font-size: 30px;
+  color: #0B3C6D;
+  margin-bottom: 15px;
+}
+
+.hero-card p {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+/* BOTÓN */
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #0F4C8A, #1E5AA8);
+  padding: 14px 28px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15,76,138,0.4);
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 22px;
+  }
+
+  .hero-card {
+    padding: 25px;
+  }
+}
+/* ===========================
+   PRODUCTOS
+=========================== */
+
+.producto-page {
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.producto-header {
+  background: linear-gradient(135deg, #0b4f9c, #1e73be);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.producto-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.producto-icons a {
+  font-size: 26px;
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+/* BUSCADOR */
+.producto-buscador {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.producto-buscador input {
+  width: 50%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #1e73be;
+}
+
+/* CONTENIDO */
+.producto-contenido {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* CATEGORIAS */
+.producto-categorias {
+  width: 220px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.producto-categorias button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #e9eef5;
+  cursor: pointer;
+}
+
+.producto-categorias .activo {
+  background: #1e73be;
+  color: white;
+}
+
+/* GRID */
+.producto-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.producto-card {
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+}
+
+.producto-card img {
+  border-radius: 12px;
+}
+
+.producto-card h4 {
+  margin: 10px 0;
+  color: #0b4f9c;
+}
+
+.producto-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* BOTON */
+.producto-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #0b4f9c;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .producto-contenido {
+    flex-direction: column;
+  }
+
+  .producto-categorias {
+    width: 100%;
+  }
+
+  .producto-buscador input {
+    width: 90%;
+  }
 }
